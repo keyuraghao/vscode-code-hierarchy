@@ -1,0 +1,12 @@
+{
+  // The webview runs in a browser context, so it needs the DOM lib that the
+  // extension host deliberately does not have. Kept next to the sources so
+  // editors and eslint's project service find it without configuration.
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "noEmit": true
+  },
+  "include": ["**/*.ts", "../shape.ts"],
+  "exclude": []
+}

@@ -1,0 +1,19 @@
+# Everything the published extension does not need. `dist/extension.js` is a
+# bundle, so neither src/ nor out/ nor node_modules/ ships.
+.github/**
+.vscode/**
+.vscode-test/**
+.vscode-test.mjs
+.venv/**
+src/**
+out/**
+test/**
+node_modules/**
+esbuild.js
+eslint.config.mjs
+tsconfig.json
+.editorconfig
+.gitignore
+**/*.map
+**/*.ts
+*.vsix

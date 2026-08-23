@@ -1,0 +1,277 @@
+/* Every colour here comes from the active VS Code theme, so the panel matches
+   whatever the user is running without any palette of its own. */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--vscode-font-family);
+    font-size: var(--vscode-font-size);
+    color: var(--vscode-foreground);
+    background: var(--vscode-sideBar-background, var(--vscode-editor-background));
+}
+
+/* ---------- header ---------- */
+
+.header {
+    flex: 0 0 auto;
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--vscode-panel-border, transparent);
+    background: var(--vscode-sideBar-background, var(--vscode-editor-background));
+}
+
+.search-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.search-box {
+    position: relative;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+}
+
+.search-box .codicon-search {
+    position: absolute;
+    left: 6px;
+    font-size: 13px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+#search {
+    width: 100%;
+    padding: 3px 22px 3px 24px;
+    font-family: inherit;
+    font-size: inherit;
+    color: var(--vscode-input-foreground);
+    background: var(--vscode-input-background);
+    border: 1px solid var(--vscode-input-border, transparent);
+    border-radius: 2px;
+    outline: none;
+}
+
+#search::placeholder {
+    color: var(--vscode-input-placeholderForeground);
+}
+
+#search:focus {
+    border-color: var(--vscode-focusBorder);
+}
+
+.clear-search {
+    position: absolute;
+    right: 3px;
+    display: none;
+    padding: 2px;
+    border: none;
+    background: transparent;
+    color: var(--vscode-input-foreground);
+    cursor: pointer;
+    opacity: 0.7;
+    border-radius: 3px;
+}
+
+.clear-search:hover {
+    opacity: 1;
+    background: var(--vscode-toolbar-hoverBackground);
+}
+
+body.searching .clear-search {
+    display: block;
+}
+
+.toolbar {
+    display: flex;
+    gap: 1px;
+}
+
+.toolbar button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--vscode-icon-foreground);
+    cursor: pointer;
+}
+
+.toolbar button:hover {
+    background: var(--vscode-toolbar-hoverBackground);
+}
+
+.toolbar button:focus-visible {
+    outline: 1px solid var(--vscode-focusBorder);
+}
+
+.toolbar button.active {
+    background: var(--vscode-inputOption-activeBackground);
+    color: var(--vscode-inputOption-activeForeground);
+    box-shadow: inset 0 0 0 1px var(--vscode-inputOption-activeBorder);
+}
+
+/* ---------- tree ---------- */
+
+.tree {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 2px 0 8px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    height: 22px;
+    padding-right: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.row:hover {
+    background: var(--vscode-list-hoverBackground);
+}
+
+.row.active {
+    background: var(--vscode-list-inactiveSelectionBackground);
+}
+
+.row.focused {
+    background: var(--vscode-list-activeSelectionBackground);
+    color: var(--vscode-list-activeSelectionForeground);
+    outline: 1px solid var(--vscode-focusBorder);
+    outline-offset: -1px;
+}
+
+.twisty {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.twisty.leaf {
+    visibility: hidden;
+}
+
+.icon {
+    flex: 0 0 auto;
+    width: 16px;
+    margin-right: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.label {
+    flex: 0 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.label .hit {
+    color: var(--vscode-list-highlightForeground);
+    font-weight: 600;
+}
+
+.detail {
+    flex: 0 1 auto;
+    margin-left: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9em;
+    opacity: 0.7;
+}
+
+.line-number {
+    flex: 0 0 auto;
+    margin-left: auto;
+    padding-left: 8px;
+    font-size: 0.9em;
+    opacity: 0.55;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- symbol colours, straight from the theme ---------- */
+
+.icon.kind-class      { color: var(--vscode-symbolIcon-classForeground); }
+.icon.kind-method     { color: var(--vscode-symbolIcon-methodForeground); }
+.icon.kind-function   { color: var(--vscode-symbolIcon-functionForeground); }
+.icon.kind-constructor{ color: var(--vscode-symbolIcon-constructorForeground); }
+.icon.kind-interface  { color: var(--vscode-symbolIcon-interfaceForeground); }
+.icon.kind-struct     { color: var(--vscode-symbolIcon-structForeground); }
+.icon.kind-enum       { color: var(--vscode-symbolIcon-enumeratorForeground); }
+.icon.kind-enum-member{ color: var(--vscode-symbolIcon-enumeratorMemberForeground); }
+.icon.kind-property   { color: var(--vscode-symbolIcon-propertyForeground); }
+.icon.kind-field      { color: var(--vscode-symbolIcon-fieldForeground); }
+.icon.kind-variable   { color: var(--vscode-symbolIcon-variableForeground); }
+.icon.kind-constant   { color: var(--vscode-symbolIcon-constantForeground); }
+.icon.kind-namespace  { color: var(--vscode-symbolIcon-namespaceForeground); }
+.icon.kind-module     { color: var(--vscode-symbolIcon-moduleForeground); }
+.icon.kind-event      { color: var(--vscode-symbolIcon-eventForeground); }
+.icon.kind-operator   { color: var(--vscode-symbolIcon-operatorForeground); }
+
+/* ---------- empty state and footer ---------- */
+
+.empty {
+    padding: 18px 16px;
+    text-align: center;
+    opacity: 0.75;
+    line-height: 1.5;
+}
+
+.footer {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-top: 1px solid var(--vscode-panel-border, transparent);
+    font-size: 0.9em;
+    opacity: 0.75;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.footer .file {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.footer .spacer {
+    flex: 1 1 auto;
+}
+
+.badge {
+    padding: 0 5px;
+    border-radius: 8px;
+    background: var(--vscode-badge-background);
+    color: var(--vscode-badge-foreground);
+    font-size: 0.9em;
+}
+
+.badge.warn {
+    background: var(--vscode-editorWarning-foreground);
+    color: var(--vscode-editor-background);
+}

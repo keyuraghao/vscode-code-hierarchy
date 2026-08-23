@@ -1,0 +1,197 @@
+{
+  "name": "code-hierarchy",
+  "displayName": "Code Hierarchy",
+  "description": "A live function and class hierarchy docked beside your code, with instant fuzzy search. No sidebar, no clicking around.",
+  "version": "0.1.0",
+  "publisher": "keyur",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "outline",
+    "symbols",
+    "functions",
+    "hierarchy",
+    "code navigation",
+    "search",
+    "minimap",
+    "structure"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keyuraghao/vscode-code-hierarchy.git"
+  },
+  "icon": "resources/marketplace-icon.png",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeHierarchy.open",
+        "title": "Open Hierarchy Panel",
+        "category": "Code Hierarchy",
+        "icon": "$(list-tree)"
+      },
+      {
+        "command": "codeHierarchy.search",
+        "title": "Search Functions",
+        "category": "Code Hierarchy",
+        "icon": "$(search)"
+      },
+      {
+        "command": "codeHierarchy.refresh",
+        "title": "Refresh",
+        "category": "Code Hierarchy",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "codeHierarchy.toggleFollowCursor",
+        "title": "Toggle Follow Cursor",
+        "category": "Code Hierarchy",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "codeHierarchy.showLog",
+        "title": "Show Log",
+        "category": "Code Hierarchy",
+        "icon": "$(output)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "codeHierarchy.open",
+          "when": "editorIsOpen && resourceScheme != 'output'",
+          "group": "navigation@100"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Code Hierarchy",
+      "properties": {
+        "codeHierarchy.autoOpen": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Open the hierarchy panel automatically beside your code the first time you focus a source file in a window. Turn this off to open it yourself with **Code Hierarchy: Open Hierarchy Panel**."
+        },
+        "codeHierarchy.followCursor": {
+          "type": "boolean",
+          "default": true,
+          "description": "Highlight the symbol containing the editor cursor in the panel as you move around the file."
+        },
+        "codeHierarchy.functionsOnly": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show only functions, methods and constructors, plus the containers that hold them. The panel toolbar toggles this too."
+        },
+        "codeHierarchy.sortOrder": {
+          "type": "string",
+          "enum": [
+            "position",
+            "name"
+          ],
+          "enumDescriptions": [
+            "Keep symbols in the order they appear in the file.",
+            "Sort symbols alphabetically within each level."
+          ],
+          "default": "position",
+          "description": "Order in which sibling symbols are listed. Ignored while a search is active, where results are ranked by match quality."
+        },
+        "codeHierarchy.showDetail": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the signature detail reported by the language server next to each symbol."
+        },
+        "codeHierarchy.showLineNumbers": {
+          "type": "boolean",
+          "default": false,
+          "description": "Append the starting line number to each symbol."
+        },
+        "codeHierarchy.refreshDelay": {
+          "type": "number",
+          "default": 400,
+          "minimum": 0,
+          "maximum": 5000,
+          "description": "Milliseconds to wait after you stop typing before rebuilding the hierarchy."
+        },
+        "codeHierarchy.useFallbackParser": {
+          "type": "boolean",
+          "default": true,
+          "description": "When no language server provides symbols, scan the file with the built-in pattern parser. Results are marked as approximate."
+        },
+        "codeHierarchy.showStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the path of the enclosing symbol in the status bar."
+        },
+        "codeHierarchy.highlightOnReveal": {
+          "type": "boolean",
+          "default": true,
+          "description": "Briefly flash the symbol in the editor when you click it in the tree."
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "codeHierarchy.search",
+        "key": "ctrl+alt+h",
+        "mac": "cmd+alt+h",
+        "when": "editorTextFocus || activeWebviewPanelId == codeHierarchy.panel"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "node esbuild.js --production",
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "compile-tests": "tsc -p ./",
+    "watch-tests": "tsc -watch -p ./",
+    "check-types": "tsc -p ./ --noEmit && tsc -p src/webview",
+    "lint": "eslint .",
+    "test:unit": "node --test test/unit/*.test.js",
+    "test:integration": "npm run pretest && vscode-test",
+    "test": "npm run check-types && npm run lint && npm run compile-tests && npm run test:unit",
+    "test:all": "npm run test && npm run test:integration",
+    "package": "npm run build && vsce package",
+    "pretest": "npm run compile && npm run compile-tests"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/codicons": "^0.0.36",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.2.0",
+    "esbuild": "^0.24.2",
+    "eslint": "^9.39.5",
+    "mocha": "^10.8.2",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.67.0"
+  },
+  "galleryBanner": {
+    "color": "#0D1117",
+    "theme": "dark"
+  },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true,
+      "description": "Code Hierarchy only reads open documents and asks VS Code for their symbols. It runs no workspace code and makes no network requests."
+    },
+    "virtualWorkspaces": true
+  },
+  "bugs": {
+    "url": "https://github.com/keyuraghao/vscode-code-hierarchy/issues"
+  },
+  "homepage": "https://github.com/keyuraghao/vscode-code-hierarchy#readme"
+}
