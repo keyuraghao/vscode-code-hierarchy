@@ -162,21 +162,11 @@ panel's content security policy blocks every remote resource. It declares
 support for [restricted mode](https://code.visualstudio.com/docs/editor/workspace-trust)
 and virtual workspaces, so it keeps working in both.
 
-## Publishing to the Marketplace
+## Releases
 
-One field in `package.json` is still a placeholder: `publisher` is `keyur`, and
-it must match the publisher ID created at
-<https://marketplace.visualstudio.com/manage> or `vsce publish` will reject it.
-Changing it also changes the extension ID, so update `EXTENSION_ID` in
-`src/test/integration/extension.test.ts` to match.
-
-```bash
-npm run test:all
-npx vsce publish
-```
-
-Releases are built by CI on every push; the packaged `.vsix` is attached to each
-GitHub release.
+CI builds the extension on every push and attaches the packaged `.vsix` to each
+GitHub release, so you can install a build without going through the
+Marketplace: **Extensions: Install from VSIX...** in the command palette.
 
 ## Licence
 

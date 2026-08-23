@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import type { CodeHierarchyApi } from '../../extension';
 
-const EXTENSION_ID = 'keyur.code-hierarchy';
+const EXTENSION_ID = 'KeyurAghao.code-hierarchy';
 
 /** The slice of package.json the contribution tests read. */
 interface Manifest {

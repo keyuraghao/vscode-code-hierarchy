@@ -3,7 +3,7 @@
   "displayName": "Code Hierarchy",
   "description": "A live function and class hierarchy docked beside your code, with instant fuzzy search. No sidebar, no clicking around.",
   "version": "0.1.0",
-  "publisher": "keyur",
+  "publisher": "KeyurAghao",
   "license": "MIT",
   "engines": {
     "vscode": "^1.85.0"
