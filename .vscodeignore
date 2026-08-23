@@ -1,6 +1,7 @@
 # Everything the published extension does not need. `dist/extension.js` is a
 # bundle, so neither src/ nor out/ nor node_modules/ ships.
 .github/**
+docs/**
 .vscode/**
 .vscode-test/**
 .vscode-test.mjs

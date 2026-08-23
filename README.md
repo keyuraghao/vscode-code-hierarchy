@@ -4,8 +4,6 @@ A live outline of your code, docked **beside the editor** rather than hidden in
 the activity bar. It opens with your file, follows your cursor, rebuilds as you
 type, and has a fuzzy search box for jumping to any function.
 
-![The hierarchy panel beside a TypeScript file](docs/panel.png)
-
 ## Why it is not a sidebar
 
 The panel is a tab in the editor area, so it sits next to your code instead of
@@ -24,8 +22,6 @@ subsequence match, the same idea as Go to Symbol: `os` finds `OrderService`,
 `sub` finds `submit` and `assertSubmittable`. Matched characters are
 highlighted, results are ranked by how well they matched, and parents are kept
 so a nested hit stays reachable.
-
-![Searching for "sub"](docs/search.png)
 
 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>H</kbd> jumps straight to the search box
 from anywhere. <kbd>Down</kbd> moves from the box into the results,
@@ -162,11 +158,10 @@ panel's content security policy blocks every remote resource. It declares
 support for [restricted mode](https://code.visualstudio.com/docs/editor/workspace-trust)
 and virtual workspaces, so it keeps working in both.
 
-## Releases
+## Installing a local build
 
-CI builds the extension on every push and attaches the packaged `.vsix` to each
-GitHub release, so you can install a build without going through the
-Marketplace: **Extensions: Install from VSIX...** in the command palette.
+`npm run package` produces a `.vsix` you can install with **Extensions: Install
+from VSIX...** in the command palette.
 
 ## Licence
 
